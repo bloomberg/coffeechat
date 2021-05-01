@@ -1,7 +1,5 @@
 name: Lint Commit Messages
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
