@@ -22,15 +22,14 @@ Accepted
 - [Commitlint](https://github.com/conventional-changelog/commitlint) is
   a tool for enforcing commit messages
   
-  *from the `commitlin` github repo*:
+  *from the `commitlint` github repo*:
 
   > commitlint checks if your commit messages meet the conventional commit format.
 
 ## Decision
 
 - We will use `conventional-commits` in this project.
-- We will enforce `conventional-commits` through `commitlint`
-- We will enforce `conventional-commits` in PRs through a `Github action`.
+- We will enforce `conventional-commits` through the `commitlint` GitHub action.
 
 ## Consequences
 
@@ -44,11 +43,11 @@ Accepted
 ### What becomes more difficult
 
 - Pushing quick (wip) commits to a pull request will be more difficult
-  as contributors will get need to know to use the right format.
+  as contributors will need to learn to use the right format.
 
 ### Risks introduced and mitigation
 
 | Risk                                              | Mitigation                                                                               |
 | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| The automated PR check can frustrate contributors | Clearly outline in the README that constributors should use conventional commit messages |
+| The automated PR check can frustrate contributors | Clearly outline in the README that contributors should use conventional commit messages |
 | The automated PR check can frustrate contributors | Add conventional commit badge to README                                                  |
