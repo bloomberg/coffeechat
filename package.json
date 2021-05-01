@@ -1,0 +1,71 @@
+{
+  "name": "coffechat",
+  "version": "0.0.0",
+  "description": "Connect Mentors and Mentees by making the process of connecting and then scheduling appointments as easy as possible.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "ts-node-dev --no-deps --respawn  --no-notify --ignore-watch '.next' --project tsconfig.server.json src/server/index.ts",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --quiet --fix",
+    "stylelint": "stylelint '**/*.tsx'",
+    "stylelint:fix": "stylelint '**/*.tsx' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloomberg/coffeechat.git"
+  },
+  "keywords": [
+    "mentor",
+    "mentee",
+    "coffee",
+    "chat"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/bloomberg/coffeechat/issues"
+  },
+  "homepage": "https://github.com/bloomberg/coffeechat#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.22",
+    "@types/pino": "^6.3.8",
+    "@types/react": "^17.0.4",
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-graphql": "^4.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.5",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^31.0.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "stylelint": "^13.13.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-prettier": "^1.2.0",
+    "ts-jest": "^26.5.5",
+    "ts-node-dev": "^1.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^6.0.0",
+    "next": "^10.2.0",
+    "pino": "^6.11.3",
+    "pino-pretty": "^4.7.1",
+    "react": "^17.0.2",
+    "styled-components": "^5.2.3",
+    "typescript": "^4.2.4"
+  }
+}
