@@ -1,5 +1,7 @@
 # Coffee Chat  <!-- omit in toc -->
 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
 Connect Mentors and Mentees by making the process of connecting and then
 scheduling appointments as easy as possible.
 
@@ -10,6 +12,7 @@ scheduling appointments as easy as possible.
 - [Building](#building)
 - [Installation](#installation)
 - [Contributions](#contributions)
+  - [Commit message standard](#commit-message-standard)
 - [License](#license)
 - [Code of Conduct](#code-of-conduct)
 - [Security Vulnerability Reporting](#security-vulnerability-reporting)
@@ -37,6 +40,13 @@ providing the necessary information.
 Before sending a [Pull Request](../../pulls), please make sure you
 read our [Contribution
 Guidelines](https://github.com/bloomberg/.github/blob/master/CONTRIBUTING.md).
+
+
+### Commit message standard
+
+This project aligns to the [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/) commit-message
+standard, and the PR process will enforce this standards. Make sure
+your PR's commit messages fulfill the standard.
 
 ## License
 
