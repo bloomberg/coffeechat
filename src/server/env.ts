@@ -21,4 +21,4 @@ const parse = makeParser<Env>({
   required: [],
 })
 
-export default parse((process.env as unknown) as Env)
+export default parse(process.env)

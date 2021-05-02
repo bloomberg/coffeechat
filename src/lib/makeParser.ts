@@ -18,10 +18,10 @@ export class ParseError extends Error {
  */
 export default function makeParser<T>(
   schema: JSONSchemaType<T>
-): (object: T) => T {
+): (object: Record<string, unknown>) => T {
   const validate = ajv.compile(schema)
 
-  return function parse(object: T) {
+  return function parse(object: Record<string, unknown>) {
     const clone = JSON.parse(JSON.stringify(object)) as T
 
     validate(clone)
