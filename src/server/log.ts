@@ -1,10 +1,7 @@
 import pino, { Logger } from 'pino'
-import Config from '../lib/Config'
+import env from './env'
 
-const { LOG_LEVEL: level, LOG_PRETTY: prettyPrint } = Config(process.env, {
-  LOG_LEVEL: 'info',
-  LOG_PRETTY: false,
-})
+const { LOG_LEVEL: level, LOG_PRETTY: prettyPrint } = env
 
 const log = pino({
   level,

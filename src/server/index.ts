@@ -1,13 +1,9 @@
-import './initDotenv'
 import next from 'next'
 import log, { final } from './log'
 import createServer from './createServer'
-import Config from '../lib/Config'
+import env from './env'
 
-const { PORT: port, NODE_ENV } = Config(process.env, {
-  NODE_ENV: 'development',
-  PORT: 3000,
-})
+const { PORT: port, NODE_ENV } = env
 
 process.on(
   'SIGINT',
