@@ -9,7 +9,9 @@
     "eslint": "eslint .",
     "eslint:fix": "eslint . --quiet --fix",
     "stylelint": "stylelint '**/*.tsx'",
-    "stylelint:fix": "stylelint '**/*.tsx' --fix"
+    "stylelint:fix": "stylelint '**/*.tsx' --fix",
+    "prettier": "prettier --write .",
+    "prettier:verify": "prettier --check ."
   },
   "repository": {
     "type": "git",

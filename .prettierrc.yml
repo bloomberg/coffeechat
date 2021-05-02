@@ -1,5 +1,5 @@
-trailingComma: "es5"
-semi: false 
+trailingComma: 'es5'
+semi: false
 singleQuote: true
-tabWith: 2
+tabWidth: 2
 proseWrap: always
