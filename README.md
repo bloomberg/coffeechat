@@ -22,7 +22,7 @@ scheduling appointments as easy as possible.
 ## Quick Start
 
 1. Clone this repository
-1. Run `npm init`
+1. Run `npm install`
 1. Start the service by `npm run dev`
 
 ## Building

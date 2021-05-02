@@ -29,7 +29,6 @@ rules:
   # NOTE: any rule set to warning (warn or 1)
   # eslint will NOT  output any warning when running `npm test` or `npm run eslint`
   # warnings will still appear on the editor 
-  no-nested-ternary: 0
   curly: error
   "@typescript-eslint/no-unused-vars": error
   "@typescript-eslint/no-floating-promises": error
@@ -61,7 +60,7 @@ rules:
   quotes:  
     - error
     - single # has to match prettier quotes
-    - avoidEscape: true # has to always be true to not clash with preetier
+    - avoidEscape: true # has to always be true to not clash with prettier
       allowTemplateLiterals: false
   "@typescript-eslint/no-unsafe-assignment": 1
   "@typescript-eslint/no-unsafe-member-access": 1
@@ -70,7 +69,8 @@ rules:
   "@typescript-eslint/restrict-template-expressions": 1
   "@typescript-eslint/explicit-function-return-type":
     - error
-    - allowExpressions: true 
+    - allowExpressions: true
+  react/react-in-jsx-scope: 0 # not needed because React 17 fixed this!
 overrides:
   - files:
       - '**/*.js'

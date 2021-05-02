@@ -1,5 +1,5 @@
 {
-  "name": "coffechat",
+  "name": "coffeechat",
   "version": "0.0.0",
   "description": "Connect Mentors and Mentees by making the process of connecting and then scheduling appointments as easy as possible.",
   "main": "index.js",
