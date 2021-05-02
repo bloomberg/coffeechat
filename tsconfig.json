@@ -6,11 +6,7 @@
     "module": "esnext",
     "target": "es6",
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,17 +16,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "typeRoots": [
-      "./types", 
-      "./node_modules/@types"
-    ]
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
-  "exclude": [
-    "node_modules",
-    "typings",
-    "dist",
-    "!.storybook"
-  ],
+  "exclude": ["node_modules", "dist", "!.storybook"],
   "include": [
     "types/custom.d.ts",
     "next-env.d.ts",
@@ -40,6 +28,6 @@
     ".storybook/**.js",
     "types/jest-dom.d.ts",
     "**/*.graphql",
-    "**/*.gql",
+    "**/*.gql"
   ]
 }

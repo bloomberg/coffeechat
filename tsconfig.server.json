@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "lib": ["ES2019"],
-    "target": "ES2019",
+    "lib": ["esnext"],
+    "target": "esnext",
     "module": "commonjs",
     "outDir": "dist",
     "noEmit": false,
@@ -13,5 +13,5 @@
     "next-env.d.ts",
     "src/server/",
     "types/*.d.ts"
-  ],
+  ]
 }
