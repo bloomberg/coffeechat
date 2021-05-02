@@ -1,9 +1,7 @@
 import next from 'next'
 import log, { final } from './log'
 import createServer from './createServer'
-import env from './env'
-
-const { PORT: port, NODE_ENV } = env
+import { PORT as port, NODE_ENV } from './env'
 
 process.on(
   'SIGINT',

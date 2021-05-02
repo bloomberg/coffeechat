@@ -21,4 +21,6 @@ const parse = makeParser<Env>({
   required: [],
 })
 
-export default parse(process.env)
+const { LOG_LEVEL, LOG_PRETTY, NODE_ENV, PORT } = parse(process.env)
+
+export { LOG_LEVEL, LOG_PRETTY, NODE_ENV, PORT }

@@ -1,7 +1,5 @@
 import pino, { Logger } from 'pino'
-import env from './env'
-
-const { LOG_LEVEL: level, LOG_PRETTY: prettyPrint } = env
+import { LOG_LEVEL as level, LOG_PRETTY as prettyPrint } from './env'
 
 const log = pino({
   level,
