@@ -14,8 +14,7 @@ describe('makeParser', () => {
   })
 
   it('should return a parser which coerces properties into the intended type', () => {
-    type Shape = { num: number; bool: boolean }
-    const parse = makeParser<Shape>({
+    const parse = makeParser<{ num: number; bool: boolean }>({
       type: 'object',
       properties: {
         num: { type: 'number' },
@@ -23,20 +22,19 @@ describe('makeParser', () => {
       },
       required: [],
     })
-    const res = parse(({ num: '5', bool: 'true' } as unknown) as Shape)
+    const res = parse({ num: '5', bool: 'true' })
     expect(res).toEqual({ num: 5, bool: true })
   })
 
   it('should return a parser which provides defaults where specified', () => {
-    type Shape = { foo: string }
-    const parse = makeParser<Shape>({
+    const parse = makeParser<{ foo: string }>({
       type: 'object',
       properties: {
         foo: { type: 'string', default: 'bar' },
       },
       required: [],
     })
-    const res = parse(({} as unknown) as Shape)
+    const res = parse({})
     expect(res).toEqual({ foo: 'bar' })
   })
 
@@ -47,8 +45,7 @@ describe('makeParser', () => {
     /* eslint-disable jest/no-conditional-expect, jest/no-try-expect */
 
     it('should return a parser which throws an error when a supplied property is not of the correct type', () => {
-      type Shape = { bool: boolean }
-      const parse = makeParser<Shape>({
+      const parse = makeParser<{ bool: boolean }>({
         type: 'object',
         properties: {
           bool: { type: 'boolean' },
@@ -58,7 +55,7 @@ describe('makeParser', () => {
 
       expect.assertions(2)
       try {
-        parse(({ bool: 'hello' } as unknown) as Shape)
+        parse({ bool: 'hello' })
       } catch (e) {
         expect(e).toBeInstanceOf(ParseError)
         expect((e as ParseError).errors).toEqual([
@@ -76,8 +73,7 @@ describe('makeParser', () => {
     })
 
     it('should return a parser which throws an error when a required property is missing', () => {
-      type Shape = { bool: boolean }
-      const parse = makeParser<Shape>({
+      const parse = makeParser<{ bool: boolean }>({
         type: 'object',
         properties: {
           bool: { type: 'boolean' },
@@ -87,7 +83,7 @@ describe('makeParser', () => {
 
       expect.assertions(2)
       try {
-        parse(({} as unknown) as Shape)
+        parse({})
       } catch (e) {
         expect(e).toBeInstanceOf(ParseError)
         expect((e as ParseError).errors).toEqual([
