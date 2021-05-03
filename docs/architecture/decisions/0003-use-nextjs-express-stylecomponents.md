@@ -1,4 +1,4 @@
-# 3. Use nextjs, express, stylecomponents
+# 3. Use nextjs, express, emotion
 
 Date: 2021-05-01
 
@@ -15,7 +15,7 @@ our development.
 - [Express.js](https://expressjs.com) is the most used Node.js web framework.
 - [React.js](https://reactjs.org/) is well-known and widely used JS library for
   building component-based user interfaces.
-- [styled-components](https://styled-components.com/) is modern CSS-in-JS
+- [emotion](https://emotion.sh) is modern CSS-in-JS
   framework
 - [Next.js](https://nextjs.org/) is a framework to "outsource" the complexity of
   running a React app.
@@ -30,7 +30,7 @@ our development.
 
 - We will use Express.js
 - We will use React.js
-- We will use styled-components
+- We will use emotion
 - We will use Next.js
 - We will use ESLint
 - We will use stylelint
