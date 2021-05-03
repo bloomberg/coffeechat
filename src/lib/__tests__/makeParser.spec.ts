@@ -1,4 +1,4 @@
-import makeParser, { ParseError } from './makeParser'
+import makeParser, { ParseError } from '../makeParser'
 
 describe('makeParser', () => {
   it('should return a parser which returns valid objects unmodified', () => {
