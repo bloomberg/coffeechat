@@ -23,7 +23,8 @@ scheduling appointments as easy as possible.
 
 1. Clone this repository
 1. Run `npm install`
-1. Start the service by `npm run dev`
+1. Start the development server with `npm run dev`
+1. Navigate to `localhost:3000` in your browser to view the React app
 
 ## Building
 
