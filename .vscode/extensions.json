@@ -3,6 +3,7 @@
     "davidanson.vscode-markdownlint",
     "yzhang.markdown-all-in-one",
     "dbaeumer.vscode-eslint",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode"
   ]
 }
