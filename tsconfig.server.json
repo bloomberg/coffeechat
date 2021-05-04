@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "dist",
+    "noEmit": false,
+    "jsx": "react"
+  },
+  "include": [
+    "types/custom.d.ts",
+    "next-env.d.ts",
+    "src/server/",
+    "types/*.d.ts"
+  ]
+}
