@@ -27,8 +27,8 @@ scheduling appointments as easy as possible.
 1. Start the development server with `npm run dev`
 1. Navigate to `localhost:4444` in your browser to view the React app.
 
-> NOTE: the server will be listening in the port corresponding to the
-> PORT variable in `.env`
+> NOTE: the server will be listening in the port corresponding to the PORT
+> variable in `.env`
 
 ## Building
 
