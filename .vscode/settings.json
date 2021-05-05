@@ -5,7 +5,6 @@
     "source.fixAll.stylelint": true
   },
   "files.insertFinalNewline": true,
-  // all these to false because of eslint-prettier
   "[javascript]": {
     "editor.formatOnSave": false
   },
