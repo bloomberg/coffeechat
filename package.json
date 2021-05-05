@@ -10,7 +10,7 @@
     "eslint:fix": "eslint . --quiet --fix",
     "stylelint": "stylelint '**/*.tsx'",
     "stylelint:fix": "stylelint '**/*.tsx' --fix",
-    "prettier": "prettier --write .",
+    "prettier:write": "prettier --write .",
     "prettier:verify": "prettier --check .",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node dist/server/index.js"
