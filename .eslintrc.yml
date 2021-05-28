@@ -13,6 +13,7 @@ extends:
 plugins:
   - react-hooks
   - unicorn
+  - inclusive-language
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 6
@@ -45,6 +46,27 @@ rules:
   react/no-unescaped-entities: 0
   import/no-unresolved: error #re-add no-unresolved
   unicorn/custom-error-definition: error
+  inclusive-language/use-inclusive-words:
+    - error
+    - words:
+        - word: guys
+          suggestions:
+            - people
+          explanation:
+            The usage of the non-inclusive word '{{word}}' is discouraged, use
+            '{{suggestion}}' instead.
+        - word: dummy
+          suggestions:
+            - mock
+          explanation:
+            The usage of the non-inclusive word '{{word}}' is discouraged, use
+            '{{suggestion}}' instead.
+        - word: handicap
+          suggestions:
+            - disable
+          explanation:
+            The usage of the non-inclusive word '{{word}}' is discouraged, use
+            '{{suggestion}}' instead.
   import/no-extraneous-dependencies:
     - error
     - devDependencies:
