@@ -4,7 +4,7 @@ Date: 2021-05-01
 
 ## Status
 
-Accepted
+Superceded by [6. Use tailwind css instead of emotion](0006-use-tailwind-css-instead-of-emotion.md)
 
 ## Context
 
