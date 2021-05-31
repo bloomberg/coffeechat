@@ -17,5 +17,8 @@
     "javascript",
     "javascriptreact",
     "graphql"
-  ]
+  ],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
 }

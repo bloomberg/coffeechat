@@ -1,24 +1,16 @@
-import { css, Global } from '@emotion/react'
 import { FC } from 'react'
 import { AppProps } from 'next/app'
+// this is a special case
+// tailwind.css will be bundled at "buildtime"
+// we do not need this as a production dependency
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'tailwindcss/tailwind.css'
+import '../styles/globals.css'
 
-const EmotionNextjsApp: FC<AppProps> = ({ Component, pageProps }) => (
+const TailwindNextjsApp: FC<AppProps> = ({ Component, pageProps }) => (
   <>
-    <Global
-      styles={css`
-        html,
-        body {
-          padding: 3rem 1rem;
-          margin: 0;
-          background: papayawhip;
-          min-height: 100%;
-          font-family: Helvetica, Arial, sans-serif;
-          font-size: 24px;
-        }
-      `}
-    />
     <Component {...pageProps} />
   </>
 )
 
-export default EmotionNextjsApp
+export default TailwindNextjsApp

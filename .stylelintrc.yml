@@ -2,3 +2,13 @@ extends:
   - stylelint-prettier/recommended
   - stylelint-config-recommended
   - stylelint-config-styled-components
+rules:
+  at-rule-no-unknown:
+    - true
+    - ignoreAtRules:
+        - tailwind
+        - apply
+        - layer
+        - variants
+        - responsive
+        - screen
