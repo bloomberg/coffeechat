@@ -25,4 +25,4 @@ Supercedes
 
 | aspect                | easier | harder | risk | notes                                                                                                                                  |
 | --------------------- | ------ | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| create a style system | ✅     |        |      | `tailwind` provides a way to centralize the `style-system`. Whether `emotion` would require us to create a mini-style-system framework |
+| create a style system | ✅     |        |      | `tailwind` provides a way to centralize the `style-system`, while `emotion` would require us to create a mini-style-system framework |
