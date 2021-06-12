@@ -27,6 +27,8 @@ jobs:
       - uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: 'npx jest --coverage'
   eslint:
     runs-on: ubuntu-latest
     steps:
