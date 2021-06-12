@@ -19,6 +19,7 @@ jobs:
           node-version: '16'
       - name: Cache node modules
         uses: actions/cache@v2
+        id: npm-cache
         env:
           cache-name: cache-node-modules
         with:
@@ -36,8 +37,8 @@ jobs:
       - uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          test-command: 'npx jest --coverage'
+        # with:
+        #   test-command: 'npx jest --coverage'
   eslint:
     runs-on: ubuntu-latest
     steps:
