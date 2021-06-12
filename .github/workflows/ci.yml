@@ -12,6 +12,8 @@ jobs:
       - uses: wagoid/commitlint-github-action@v2
   test:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
