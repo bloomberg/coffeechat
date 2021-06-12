@@ -11,9 +11,14 @@ jobs:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v2
   test:
-    uses: mattallty/jest-github-action@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   eslint:
     runs-on: ubuntu-latest
     steps:
