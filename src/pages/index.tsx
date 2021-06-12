@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 const H1 = styled.h1`
   color: red;

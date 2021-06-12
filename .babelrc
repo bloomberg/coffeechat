@@ -1,14 +1,4 @@
 {
-  "presets": [
-    [
-      "next/babel",
-      {
-        "preset-react": {
-          "runtime": "automatic",
-          "importSource": "@emotion/react"
-        }
-      }
-    ]
-  ],
-  "plugins": ["@emotion/babel-plugin"]
+  "presets": ["next/babel"],
+  "plugins": [["styled-components", { "ssr": true }]]
 }
