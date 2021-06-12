@@ -11,20 +11,9 @@ jobs:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v2
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-      - run: npm test
+    uses: mattallty/jest-github-action@v1
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   eslint:
     runs-on: ubuntu-latest
     steps:
