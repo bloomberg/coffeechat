@@ -45,6 +45,7 @@ rules:
   react/no-array-index-key: error
   react/jsx-indent-props: 0
   react/no-unescaped-entities: 0
+  react/require-default-props: 0
   import/no-unresolved: error #re-add no-unresolved
   unicorn/custom-error-definition: error
   inclusive-language/use-inclusive-words:
