@@ -26,8 +26,8 @@
     "**/*.tsx",
     "**/*.js",
     ".storybook/**.js",
-    "types/jest-dom.d.ts",
     "**/*.graphql",
-    "**/*.gql"
+    "**/*.gql",
+    ".jest/jestDomSetup.ts"
   ]
 }

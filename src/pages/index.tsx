@@ -1,10 +1,6 @@
 import { NextPage } from 'next'
-import styled from 'styled-components'
+import Hello from '../components/Hello'
 
-const H1 = styled.h1`
-  color: red;
-`
-
-const HomePage: NextPage = () => <H1>hello!</H1>
+const HomePage: NextPage = () => <Hello />
 
 export default HomePage
