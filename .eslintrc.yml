@@ -6,6 +6,7 @@ extends:
   - plugin:import/warnings
   - plugin:import/typescript
   - plugin:promise/recommended
+  - next
   - airbnb-typescript
   - plugin:jest/recommended
   - plugin:jest/style
