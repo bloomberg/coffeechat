@@ -9,8 +9,8 @@ describe('makeParser', () => {
       },
       required: [],
     })
-    const res = parse({ foo: 'bar' })
-    expect(res).toEqual({ foo: 'bar' })
+    const result = parse({ foo: 'bar' })
+    expect(result).toEqual({ foo: 'bar' })
   })
 
   it('should return a parser which coerces properties into the intended type', () => {
@@ -22,8 +22,8 @@ describe('makeParser', () => {
       },
       required: [],
     })
-    const res = parse({ num: '5', bool: 'true' })
-    expect(res).toEqual({ num: 5, bool: true })
+    const result = parse({ num: '5', bool: 'true' })
+    expect(result).toEqual({ num: 5, bool: true })
   })
 
   it('should return a parser which provides defaults where specified', () => {
@@ -34,8 +34,8 @@ describe('makeParser', () => {
       },
       required: [],
     })
-    const res = parse({})
-    expect(res).toEqual({ foo: 'bar' })
+    const result = parse({})
+    expect(result).toEqual({ foo: 'bar' })
   })
 
   describe('errors', () => {
@@ -56,9 +56,9 @@ describe('makeParser', () => {
       expect.assertions(2)
       try {
         parse({ bool: 'hello' })
-      } catch (e) {
-        expect(e).toBeInstanceOf(ParseError)
-        expect((e as ParseError).errors).toEqual([
+      } catch (error) {
+        expect(error).toBeInstanceOf(ParseError)
+        expect((error as ParseError).errors).toEqual([
           {
             instancePath: '/bool',
             keyword: 'type',
@@ -84,9 +84,9 @@ describe('makeParser', () => {
       expect.assertions(2)
       try {
         parse({})
-      } catch (e) {
-        expect(e).toBeInstanceOf(ParseError)
-        expect((e as ParseError).errors).toEqual([
+      } catch (error) {
+        expect(error).toBeInstanceOf(ParseError)
+        expect((error as ParseError).errors).toEqual([
           {
             instancePath: '',
             keyword: 'required',

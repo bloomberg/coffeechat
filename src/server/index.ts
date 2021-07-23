@@ -1,7 +1,7 @@
 import next from 'next'
 import log, { final } from './log'
 import createServer from './createServer'
-import { PORT as port, NODE_ENV } from './env'
+import { PORT as port, NODE_ENV } from './environment'
 
 process.on(
   'SIGINT',
@@ -35,7 +35,7 @@ async function start(): Promise<void> {
   await app.prepare()
   const handle = app.getRequestHandler()
   const server = createServer({
-    nextHandler: (req, res) => handle(req, res),
+    nextHandler: (request, response) => handle(request, response),
   })
   server.listen(port)
   log.info({ port }, 'process started')
@@ -43,5 +43,7 @@ async function start(): Promise<void> {
 
 start().catch((error) => {
   log.fatal(error, 'cannot start the server')
+  // we're catching a fatal error, so returning 1 is warranted
+  // eslint-disable-next-line unicorn/no-process-exit
   process.exit(1)
 })
