@@ -8,6 +8,7 @@ extends:
   - plugin:promise/recommended
   - next
   - airbnb-typescript
+  - plugin:unicorn/recommended
   - plugin:jest/recommended
   - plugin:jest/style
   - prettier
@@ -95,18 +96,25 @@ rules:
     - error
     - allowExpressions: true
   react/react-in-jsx-scope: 0 # not needed because React 17 fixed this!
+  unicorn/no-null: 0
+  unicorn/prefer-node-protocol: 0
+  unicorn/filename-case: 0
+  unicorn/no-array-for-each: 0
+  unicorn/no-array-reduce: 0
+  unicorn/no-array-callback-reference: 0
 overrides:
   - files:
       - '**/*.js'
     rules:
       '@typescript-eslint/explicit-function-return-type': 0
       '@typescript-eslint/explicit-module-boundary-types': 0
-      'react/jsx-filename-extension': 0
+      react/jsx-filename-extension: 0
       '@typescript-eslint/no-unsafe-return': 0
       '@typescript-eslint/no-unsafe-assignment': 0
       '@typescript-eslint/no-unsafe-call': 0
       '@typescript-eslint/no-unsafe-member-access': 0
       '@typescript-eslint/no-var-requires': 0
+      unicorn/prefer-module: 0
   - files:
       - 'scripts/**/*.{ts,tsx,js,jsx}'
     rules:

@@ -1,10 +1,10 @@
 import express, { Express, RequestHandler } from 'express'
 
-interface Opts {
+interface Options {
   nextHandler: RequestHandler
 }
 
-export default function createServer({ nextHandler }: Opts): Express {
+export default function createServer({ nextHandler }: Options): Express {
   const server = express()
 
   server.disable('x-powered-by')
