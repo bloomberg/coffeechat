@@ -21,5 +21,4 @@ const EmotionNextjsApp: FC<AppProps> = ({ Component, pageProps }) => (
     <Component {...pageProps} />
   </>
 )
-
 export default EmotionNextjsApp
