@@ -56,8 +56,8 @@ async function start(): Promise<void> {
     new Strategy(
       {
         path: '/login/callback',
-        entryPoint: 'https://bssobeta.bloomberg.com/idp/SSO.saml2',
-        issuer: 'WebChampBSSOSample',
+        entryPoint: 'https://samplessourl.com',
+        issuer: 'BSSOSample',
         cert: fs.readFileSync('./idp_cert.crt', 'utf-8'),
         privateCert: fs.readFileSync('./my_key.key', 'utf-8'),
         identifierFormat: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
