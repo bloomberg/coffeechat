@@ -2,3 +2,4 @@ dist/
 !.storybook
 out*
 .next
+src/generated

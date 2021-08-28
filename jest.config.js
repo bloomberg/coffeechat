@@ -4,4 +4,5 @@ module.exports = {
   setupFiles: ['<rootDir>/.jest/storyBookTesting.ts'],
   setupFilesAfterEnv: ['<rootDir>/.jest/jestDomSetup.ts'],
   testEnvironment: 'jsdom',
+  globalSetup: '<rootDir>/.jest/globalSetup.ts',
 }

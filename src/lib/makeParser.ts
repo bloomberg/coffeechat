@@ -1,6 +1,6 @@
 import Ajv, { JSONSchemaType, ErrorObject } from 'ajv'
 
-const ajv = new Ajv({ coerceTypes: true, useDefaults: true })
+const ajv = new Ajv({ coerceTypes: true, useDefaults: true, allErrors: true })
 
 export class ParseError extends Error {
   errors: ErrorObject[] = []
@@ -9,6 +9,10 @@ export class ParseError extends Error {
     super('failed to parse object')
     this.name = 'ParseError'
     this.errors = errors
+  }
+
+  toString(): string {
+    return JSON.stringify(this.errors, null, 2)
   }
 }
 
@@ -26,6 +30,12 @@ export default function makeParser<T>(
 
     validate(clone)
     if (validate.errors) {
+      if (process.env.NODE_ENV !== 'production') {
+        // in dev mode the missing properties are not shown and this is very
+        // confusing. This will output any time there's an error parsing the env
+        // eslint-disable-next-line no-console
+        console.error(new ParseError(validate.errors), 'Invalid environment')
+      }
       throw new ParseError(validate.errors)
     }
 

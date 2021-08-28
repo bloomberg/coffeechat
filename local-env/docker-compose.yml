@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  db:
+    # This matches the pg version the team
+    # has available at this time
+    image: postgres:12.4
+    environment:
+      - POSTGRES_PASSWORD
+    ports:
+      - 5432:5432

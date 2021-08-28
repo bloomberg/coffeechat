@@ -1,42 +1,75 @@
+import './handleProcessErrors'
 import next from 'next'
-import log, { final } from './log'
-import createServer from './createServer'
-import { PORT as port, NODE_ENV } from './environment'
+import passport from 'passport'
+import express from 'express'
+import session from 'express-session'
+import log from './log'
+import {
+  PORT as port,
+  NODE_ENV,
+  OPENID_CALLBACK_BASE_URL,
+  SESSION_SECRET,
+} from './environment'
+import accessLog from './express/middlewares/accessLog'
+import initPassport from './express/middlewares/passport'
+import { makeOpenIdStrategy } from './express/middlewares/passport/openId'
+import { jwtHandler } from './express/handlers/jwt'
+import startApolloServer from './gql/apolloServer'
+import { makeDebug } from '../lib/makeDebug'
 
-process.on(
-  'SIGINT',
-  final((_, finalLogger) => {
-    finalLogger.info('Exiting')
-    process.exit(0)
-  }) as () => void
+const OPENID_CALLBACK_PATH = '/auth/example/callback'
+const debug = makeDebug('server')
+
+const REGISTERED_OPENID_REDIRECT = `${OPENID_CALLBACK_BASE_URL}${OPENID_CALLBACK_PATH}`
+
+log.info(
+  { REGISTERED_OPENID_REDIRECT },
+  'make sure this url is registered with your Open Id connect authority. e.g.: google'
 )
-
-process.on(
-  'uncaughtException',
-  final((error, finalLogger) => {
-    finalLogger.fatal(error, 'unhandled')
-    process.exit(1)
-  })
-)
-
-// the node api is Error | any
-// per the docs https://nodejs.org/api/process.html#process_event_unhandledrejection
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-process.on('unhandledRejection', (reason: Error | any) => {
-  log.warn(reason, 'Unhandled rejection')
-})
 
 async function start(): Promise<void> {
   log.info({ NODE_ENV }, 'application starting')
-  const app = next({
+
+  const server = express()
+  server.use(
+    session({ secret: SESSION_SECRET, resave: true, saveUninitialized: false })
+  )
+  server.use(accessLog)
+
+  initPassport(server, await makeOpenIdStrategy(REGISTERED_OPENID_REDIRECT))
+
+  server.get('/jwt', jwtHandler)
+  server.get(
+    OPENID_CALLBACK_PATH,
+    passport.authenticate('oidc', { failureRedirect: '/' }),
+    (request, response) => {
+      const { url, query } = request
+      debug('callback path %O', { url, query })
+      response.redirect('/authenticated-example')
+    }
+  )
+  server.get('/login/oidc', passport.authenticate('oidc'))
+  server.get('/logout', (request, response) => {
+    request.logOut()
+    response.redirect('/')
+  })
+
+  server.disable('x-powered-by')
+  server.set('trust-proxy', true)
+
+  const apolloServer = await startApolloServer()
+  apolloServer.applyMiddleware({ app: server })
+
+  const nextjsApp = next({
     dev: NODE_ENV !== 'production',
     quiet: true,
   })
-  await app.prepare()
-  const handle = app.getRequestHandler()
-  const server = createServer({
-    nextHandler: (request, response) => handle(request, response),
+  await nextjsApp.prepare()
+  const nextHandler = nextjsApp.getRequestHandler()
+  server.all('*', (request, response) => {
+    void nextHandler(request, response)
   })
+
   server.listen(port)
   log.info({ port }, 'process started')
 }

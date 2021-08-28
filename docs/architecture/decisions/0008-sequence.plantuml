@@ -1,0 +1,54 @@
+@startuml JWT Authority sequence diagram
+
+autoactivate on
+
+title JWT Authority sequence diagram 
+
+actor "User\nactually the browser" as User
+participant "Coffee Chat" as CoffeeChat
+participant "OpenId-Connect\nAuthority\ne.g.: Google" as OpenIdConnectAuthority
+database "Coffee Chat DB" as CoffeeChatDB
+
+User -> CoffeeChat: login
+
+== authentication flow ==
+
+group OpenId/Oauth 2.0 flow [this is the standard Oauth 2.0 challenge,\nabstracted by passport.js]
+  CoffeeChat --> User:  OpendId-Connect redirect
+  group Authority login challenge [including MFA]
+    User -> OpenIdConnectAuthority: navigate to redirect
+    OpenIdConnectAuthority --> User: Login Challenge
+    User -> OpenIdConnectAuthority: Answer login challenge
+  end
+  OpenIdConnectAuthority --> User: redirect to CoffeChat
+  User -> CoffeeChat: navigate to redirected url
+  CoffeeChat -> OpenIdConnectAuthority: get user profile
+  OpenIdConnectAuthority --> CoffeeChat: user profile
+end
+
+== User authenticated / identified succesfully ==
+
+CoffeeChat --> CoffeeChat: create session in cookies
+CoffeeChat --> User: redirect and include session in cookies
+
+== User has session in cookies ==
+
+User -> CoffeeChat: get /jwt (include session cookies)
+
+CoffeeChat-> CoffeeChat: read user from session
+CoffeeChat -> CoffeeChatDB: get or create user
+CoffeeChatDB --> CoffeeChat: user found or created
+CoffeeChat --> CoffeeChat: sign jwt
+CoffeeChat --> User: jwt
+
+== User has JWT ==
+
+User -> CoffeeChat: GQL with Bearer JWT
+CoffeeChat -> CoffeeChat: validate JWT and roles
+CoffeeChat --> CoffeeChat: valid JWT
+CoffeeChat -> CoffeeChatDB: some DB op
+CoffeeChatDB --> CoffeeChat: data
+CoffeeChat --> User: data
+
+
+@enduml

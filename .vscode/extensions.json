@@ -4,6 +4,7 @@
     "yzhang.markdown-all-in-one",
     "dbaeumer.vscode-eslint",
     "stylelint.vscode-stylelint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "Prisma.prisma"
   ]
 }
