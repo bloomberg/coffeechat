@@ -16,6 +16,7 @@ plugins:
   - react-hooks
   - unicorn
   - inclusive-language
+  - graphql
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 6
@@ -96,6 +97,10 @@ rules:
     - error
     - allowExpressions: true
   react/react-in-jsx-scope: 0 # not needed because React 17 fixed this!
+  graphql/template-strings:
+    - error
+    - env: apollo
+  graphql/named-operations: error
   unicorn/no-null: 0
   unicorn/prefer-node-protocol: 0
   unicorn/filename-case: 0
@@ -119,6 +124,15 @@ overrides:
       - 'scripts/**/*.{ts,tsx,js,jsx}'
     rules:
       no-console: 0
+  - files:
+      - 'src/server/gql/schema/**/*.{tsx,ts}'
+    rules:
+      graphql/template-strings: 0
+  - files:
+      - next-env.d.ts
+    rules:
+      unicorn/prevent-abbreviations: 0
+
 settings:
   react:
     version: detect

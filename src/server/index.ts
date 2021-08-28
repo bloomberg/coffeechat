@@ -34,7 +34,7 @@ async function start(): Promise<void> {
   })
   await app.prepare()
   const handle = app.getRequestHandler()
-  const server = createServer({
+  const server = await createServer({
     nextHandler: (request, response) => handle(request, response),
   })
   server.listen(port)

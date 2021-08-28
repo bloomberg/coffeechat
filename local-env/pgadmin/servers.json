@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Docker Compose Local Env",
+      "Group": "Preconfigured local groups",
+      "Port": 5432,
+      "Username": "postgres",
+      "Host": "db",
+      "MaintenanceDB": "postgres",
+      "SSLMode": "prefer"
+    }
+  }
+}

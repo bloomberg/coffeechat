@@ -13,6 +13,9 @@ scheduling appointments as easy as possible.
 - [Installation](#installation)
 - [Contributions](#contributions)
   - [Commit message standard](#commit-message-standard)
+- [Local development](#local-development)
+  - [Generate & update typescript types for GQL Schema](#generate--update-typescript-types-for-gql-schema)
+  - [Run Database migrations](#run-database-migrations)
 - [License](#license)
 - [Code of Conduct](#code-of-conduct)
 - [Security Vulnerability Reporting](#security-vulnerability-reporting)
@@ -24,6 +27,9 @@ scheduling appointments as easy as possible.
 1. Clone this repository
 1. Run `npm install`
 1. Copy `sample.env` to `.env`.
+1. `cd` to `local-env`, and start the local services `docker compose up -d`
+1. `cd ..` to the root of this project
+1. Run the migrations `npx prisma migrate dev`
 1. Start the development server with `npm run dev`
 1. Navigate to `localhost:4444` in your browser to view the React app.
 
@@ -54,6 +60,39 @@ This project aligns to the
 [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/)
 commit-message standard, and the PR process will enforce this standards. Make
 sure your PR's commit messages fulfill the standard.
+
+## Local development
+
+### Generate & update typescript types for GQL Schema
+
+1. Start the server locally
+
+```bash
+npm run dev
+```
+
+2. Pull the schema into a centralized schema.graphql
+
+Open another termina window and then run.
+
+```bash
+
+npm run gql:update-schema-gql
+```
+
+1. Generate the typescript types for queries
+
+```bash
+npm run gql:generate-ts-for-queries
+```
+
+### Run Database migrations
+
+1. Run a dev migration
+
+```bash
+npx prisma migrate dev
+```
 
 ## License
 

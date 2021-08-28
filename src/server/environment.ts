@@ -8,6 +8,7 @@ interface Environment {
   LOG_PRETTY: boolean
   NODE_ENV: 'development' | 'production' | 'test'
   PORT: number
+  APOLLO_SERVER_PLAYGROUND_ENABLE: boolean
 }
 
 const parse = makeParser<Environment>({
@@ -17,8 +18,15 @@ const parse = makeParser<Environment>({
     LOG_PRETTY: { type: 'boolean', default: false },
     NODE_ENV: { type: 'string', default: 'development' },
     PORT: { type: 'number', default: 3000 },
+    APOLLO_SERVER_PLAYGROUND_ENABLE: { type: 'boolean', default: false },
   },
   required: [],
 })
 
-export const { LOG_LEVEL, LOG_PRETTY, NODE_ENV, PORT } = parse(process.env)
+export const {
+  LOG_LEVEL,
+  LOG_PRETTY,
+  NODE_ENV,
+  PORT,
+  APOLLO_SERVER_PLAYGROUND_ENABLE,
+} = parse(process.env)
