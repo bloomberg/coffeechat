@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// TODO: use format schema to format this && break the build
+// if it's not formatted correctly
+// https://github.com/prisma/prisma/issues/3265
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+model user {
+  id                      String                   @id @default(uuid())
+  created_at              DateTime                 @default(now())
+  given_name              String
+  family_name             String
+  emails                  email[]
+  system_role_assignments system_role_assignment[]
+}
+
+model email {
+  email   String @id
+  user    user   @relation(fields: [user_id], references: [id])
+  user_id String
+}
+
+model system_role {
+  id          String                   @id @default(uuid())
+  name        String                   @unique
+  assignments system_role_assignment[]
+}
+
+model system_role_assignment {
+  user_id        String
+  system_role_id String
+  user           user        @relation(fields: [user_id], references: [id])
+  role           system_role @relation(fields: [system_role_id], references: [id])
+
+  @@id([user_id, system_role_id])
+}

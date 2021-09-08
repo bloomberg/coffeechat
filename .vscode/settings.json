@@ -17,5 +17,8 @@
     "javascript",
     "javascriptreact",
     "graphql"
-  ]
+  ],
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

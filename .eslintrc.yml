@@ -16,6 +16,7 @@ plugins:
   - react-hooks
   - unicorn
   - inclusive-language
+  - graphql
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 6
@@ -73,6 +74,7 @@ rules:
   import/no-extraneous-dependencies:
     - error
     - devDependencies:
+        - '**/__mocks__/**'
         - '**/*.spec.{ts,tsx}'
         - '**/*.stories.{ts,tsx}'
         - '.storybook/*.{js,jsx,ts,tsx}'
@@ -96,12 +98,19 @@ rules:
     - error
     - allowExpressions: true
   react/react-in-jsx-scope: 0 # not needed because React 17 fixed this!
+  graphql/template-strings:
+    - error
+    - env: apollo
+  graphql/named-operations: error
   unicorn/no-null: 0
   unicorn/prefer-node-protocol: 0
   unicorn/filename-case: 0
   unicorn/no-array-for-each: 0
   unicorn/no-array-reduce: 0
   unicorn/no-array-callback-reference: 0
+  no-unreachable: 2
+  no-void: 0
+  '@typescript-eslint/naming-convention': 0
 overrides:
   - files:
       - '**/*.js'
@@ -119,6 +128,20 @@ overrides:
       - 'scripts/**/*.{ts,tsx,js,jsx}'
     rules:
       no-console: 0
+  - files:
+      - 'src/server/gql/schema/**/*.{tsx,ts}'
+    rules:
+      graphql/template-strings: 0
+  - files:
+      - next-env.d.ts
+    rules:
+      unicorn/prevent-abbreviations: 0
+  - files:
+      - '**/*.spec.{ts,tsx}'
+    rules:
+      '@typescript-eslint/unbound-method': 0
+
 settings:
   react:
     version: detect
+reportUnusedDisableDirectives: true

@@ -1,5 +1,7 @@
 import makeParser, { ParseError } from '../makeParser'
 
+jest.spyOn(global.console, 'error').mockImplementation(() => {})
+
 describe('makeParser', () => {
   it('should return a parser which returns valid objects unmodified', () => {
     const parse = makeParser<{ foo: string }>({

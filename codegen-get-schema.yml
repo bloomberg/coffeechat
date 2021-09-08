@@ -1,0 +1,12 @@
+overwrite: true
+# point to your local enviornment.
+# If you are using a custom port (not 4444)
+# update it here, but do not commit it.
+schema: 'http://localhost:4444/graphql'
+generates:
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+hooks:
+  afterOneFileWrite:
+    - npx prettier --write
