@@ -23,6 +23,8 @@ interface Environment {
   GQL_BACKEND_URL: string
   GQL_SHIELD_DEBUG: boolean
   PRISMA_LOG_LEVELS: string
+  SESSION_SECURE: boolean
+  SESSION_MAX_AGE_MILLIS: number
 }
 
 const parse = makeParser<Environment>({
@@ -51,6 +53,8 @@ const parse = makeParser<Environment>({
       default: '',
       pattern: '^((query|info|warn|error)+(,)?)*$',
     },
+    SESSION_SECURE: { type: 'boolean', default: true },
+    SESSION_MAX_AGE_MILLIS: { type: 'number', default: 60 * 60 * 1000 },
   },
   required: [
     'OPENID_CLIENT_ID',
@@ -80,4 +84,6 @@ export const {
   GQL_BACKEND_URL,
   GQL_SHIELD_DEBUG,
   PRISMA_LOG_LEVELS,
+  SESSION_SECURE,
+  SESSION_MAX_AGE_MILLIS,
 } = parse(process.env)

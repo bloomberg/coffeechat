@@ -2,13 +2,15 @@ import './handleProcessErrors'
 import next from 'next'
 import passport from 'passport'
 import express from 'express'
-import session from 'express-session'
+import cookieSession from 'cookie-session'
 import log from './log'
 import {
   PORT as port,
   NODE_ENV,
   OPENID_CALLBACK_BASE_URL,
   SESSION_SECRET,
+  SESSION_SECURE,
+  SESSION_MAX_AGE_MILLIS,
 } from './environment'
 import accessLog from './express/middlewares/accessLog'
 import initPassport from './express/middlewares/passport'
@@ -32,7 +34,12 @@ async function start(): Promise<void> {
 
   const server = express()
   server.use(
-    session({ secret: SESSION_SECRET, resave: true, saveUninitialized: false })
+    cookieSession({
+      secret: SESSION_SECRET,
+      maxAge: SESSION_MAX_AGE_MILLIS,
+      secureProxy: SESSION_SECURE,
+      httpOnly: true,
+    })
   )
   server.use(accessLog)
 
