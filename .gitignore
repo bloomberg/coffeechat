@@ -120,3 +120,6 @@ dist
 out*
 *.abs.annotations.json
 junit.xml
+
+# ignore .npmrc so that developers can override it localy
+.npmrc

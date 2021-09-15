@@ -25,8 +25,9 @@ scheduling appointments as easy as possible.
 ## Quick Start
 
 1. Clone this repository
+1. `cp .npmrc.sample .npmrc`
 1. Run `npm install`
-1. Copy `sample.env` to `.env`.
+1. `cp sample.env .env`.
 1. `cd` to `local-env`, and start the local services `docker compose up -d`
 1. `cd ..` to the root of this project
 1. Run the migrations `npx prisma migrate dev`
