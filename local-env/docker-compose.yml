@@ -5,6 +5,6 @@ services:
     # has available at this time
     image: postgres:12.4
     environment:
-      - POSTGRES_PASSWORD
+      POSTGRES_PASSWORD: 'local-pg-password'
     ports:
       - 5432:5432
