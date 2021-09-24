@@ -1,4 +1,7 @@
 import { NextPage } from 'next'
+import withRedirectIfNotInitialized from '../lib/withRedirectIfNotInitialized'
+
+export const getServerSideProps = withRedirectIfNotInitialized()
 
 const AuthenticatedExample: NextPage = () => (
   <>

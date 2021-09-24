@@ -1,5 +1,8 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
+import withRedirectIfNotInitialized from '../lib/withRedirectIfNotInitialized'
+
+export const getServerSideProps = withRedirectIfNotInitialized()
 
 const HomePage: NextPage = () => (
   <>

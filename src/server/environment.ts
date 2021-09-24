@@ -20,7 +20,7 @@ interface Environment {
   JWT_AUTHORITY_ISSUER_SHARED_SECRET: string
   JWT_AUTHORITY_ISSUER: string
   SESSION_SECRET: string
-  GQL_BACKEND_URL: string
+  NEXT_PUBLIC_GQL_BACKEND_URL: string
   GQL_SHIELD_DEBUG: boolean
   PRISMA_LOG_LEVELS: string
   SESSION_SECURE: boolean
@@ -46,7 +46,7 @@ const parse = makeParser<Environment>({
     JWT_AUTHORITY_ISSUER_SHARED_SECRET: { type: 'string' },
     JWT_AUTHORITY_ISSUER: { type: 'string' },
     SESSION_SECRET: { type: 'string' },
-    GQL_BACKEND_URL: { type: 'string' },
+    NEXT_PUBLIC_GQL_BACKEND_URL: { type: 'string' },
     GQL_SHIELD_DEBUG: { type: 'boolean', default: false },
     PRISMA_LOG_LEVELS: {
       type: 'string',
@@ -63,7 +63,7 @@ const parse = makeParser<Environment>({
     'JWT_AUTHORITY_ISSUER',
     'JWT_AUTHORITY_ISSUER_SHARED_SECRET',
     'SESSION_SECRET',
-    'GQL_BACKEND_URL',
+    'NEXT_PUBLIC_GQL_BACKEND_URL',
   ],
 })
 
@@ -81,7 +81,7 @@ export const {
   JWT_AUTHORITY_ISSUER,
   JWT_AUTHORITY_ISSUER_SHARED_SECRET,
   SESSION_SECRET,
-  GQL_BACKEND_URL,
+  NEXT_PUBLIC_GQL_BACKEND_URL,
   GQL_SHIELD_DEBUG,
   PRISMA_LOG_LEVELS,
   SESSION_SECURE,

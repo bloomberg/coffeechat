@@ -170,6 +170,7 @@ scalar MAC
 
 type Mutation {
   addUser(email: String!, given_name: String!, family_name: String!): User
+  initialize(email: String!, given_name: String!, family_name: String!): User
 }
 
 """
@@ -239,6 +240,7 @@ scalar PostalCode
 
 type Query {
   email(email: String!): Email
+  isInitialized: Boolean!
 }
 
 """

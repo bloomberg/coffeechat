@@ -3,6 +3,7 @@ import next from 'next'
 import passport from 'passport'
 import express from 'express'
 import cookieSession from 'cookie-session'
+import cookieParser from 'cookie-parser'
 import log from './log'
 import {
   PORT as port,
@@ -41,6 +42,7 @@ async function start(): Promise<void> {
       httpOnly: true,
     })
   )
+  server.use(cookieParser())
   server.use(accessLog)
 
   initPassport(server, await makeOpenIdStrategy(REGISTERED_OPENID_REDIRECT))

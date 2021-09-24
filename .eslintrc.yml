@@ -41,6 +41,7 @@ rules:
     - declaration: false
       assignment: false
   react/jsx-indent: 0
+  react/jsx-no-bind: 0
   react/jsx-props-no-spreading: 0
   react/prop-types: 0
   react-hooks/rules-of-hooks: error
@@ -50,6 +51,13 @@ rules:
   react/require-default-props: 0
   import/no-unresolved: error #re-add no-unresolved
   unicorn/custom-error-definition: error
+  unicorn/prevent-abbreviations:
+    - error
+    - replacements:
+        prop:
+          property: false
+        props:
+          properties: false
   inclusive-language/use-inclusive-words:
     - error
     - words:

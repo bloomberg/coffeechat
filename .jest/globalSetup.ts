@@ -5,5 +5,5 @@ export default (): void => {
   process.env.JWT_AUTHORITY_ISSUER = 'jestUnitTest'
   process.env.JWT_AUTHORITY_ISSUER_SHARED_SECRET = 'jestUnitTestSecret'
   process.env.SESSION_SECRET = ''
-  process.env.GQL_BACKEND_URL = ''
+  process.env.NEXT_PUBLIC_GQL_BACKEND_URL = ''
 }

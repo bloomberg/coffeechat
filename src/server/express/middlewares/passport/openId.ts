@@ -6,7 +6,7 @@ import {
   OPENID_ISSUER,
   OPENID_CLIENT_ID,
   OPENID_CLIENT_SECRET,
-  GQL_BACKEND_URL,
+  NEXT_PUBLIC_GQL_BACKEND_URL,
 } from '../../../environment'
 
 import log from '../../../log'
@@ -63,7 +63,7 @@ async function verify(
       FindUserQuery,
       FindUserQueryVariables
     >(
-      GQL_BACKEND_URL,
+      NEXT_PUBLIC_GQL_BACKEND_URL,
       gql`
         query FindUser($email: String!) {
           email(email: $email) {
@@ -94,7 +94,7 @@ async function verify(
       AddUserMutation,
       AddUserMutationVariables
     >(
-      GQL_BACKEND_URL,
+      NEXT_PUBLIC_GQL_BACKEND_URL,
       gql`
         mutation AddUser(
           $email: String!
@@ -132,7 +132,7 @@ async function verify(
     if (error instanceof Error) {
       log.warn(error, 'Error while creating user')
     } else {
-      log.warn(`Error while creting user ${JSON.stringify(error)}`)
+      log.warn(`Error while creating user ${JSON.stringify(error)}`)
     }
     throw error
   }

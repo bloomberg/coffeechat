@@ -1,7 +1,10 @@
+import { gql, request } from 'graphql-request'
 import { rule } from 'graphql-shield'
 import { IRuleFunction } from 'graphql-shield/dist/types'
 import { UserInfo } from '../../types/expressSession'
 import { makeDebug } from '../../lib/makeDebug'
+import { NEXT_PUBLIC_GQL_BACKEND_URL } from '../environment'
+import { IsInitializedQuery } from '../../generated/graphql'
 
 const debug = makeDebug('coffeechat:gql:shield:permissions')
 
@@ -31,4 +34,15 @@ export const isAdmin = withDebug('isAdmin')(
 export const isSelf = withDebug('isSelf')(
   async (parent, { email }, context: TContext) =>
     email === context.token?.user?.email
+)
+
+export const isNotInitialized = withDebug('isInitialized')(() =>
+  request<IsInitializedQuery>(
+    NEXT_PUBLIC_GQL_BACKEND_URL,
+    gql`
+      query IsInitialized {
+        isInitialized
+      }
+    `
+  ).then(({ isInitialized }) => !isInitialized)
 )
