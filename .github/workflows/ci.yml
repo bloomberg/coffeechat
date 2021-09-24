@@ -85,6 +85,14 @@ jobs:
             ${{ runner.os }}-node
       - run: npm ci
       - run: npm run build
+        env:
+          OPENID_CLIENT_ID: 'client-id'
+          OPENID_CLIENT_SECRET: 'secret'
+          OPENID_ISSUER: 'issuer'
+          JWT_AUTHORITY_ISSUER: 'issuer'
+          JWT_AUTHORITY_ISSUER_SHARED_SECRET: 'secret'
+          SESSION_SECRET: 'secret'
+          NEXT_PUBLIC_GQL_BACKEND_URL: 'http://localhost:4444/graphql'
   build-storybook:
     runs-on: ubuntu-latest
     steps:
