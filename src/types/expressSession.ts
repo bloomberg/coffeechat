@@ -4,3 +4,8 @@ export interface UserInfo {
   given_name: string
   system_roles: string[]
 }
+
+export interface SessionData {
+  jwt: string
+  user: UserInfo
+}
