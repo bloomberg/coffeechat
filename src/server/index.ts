@@ -52,7 +52,7 @@ async function start(): Promise<void> {
     (request, response) => {
       const { url, query } = request
       debug('callback path %O', { url, query })
-      response.redirect('/authenticated-example')
+      response.redirect('/home')
     }
   )
   server.get('/login/oidc', passport.authenticate('oidc'))
