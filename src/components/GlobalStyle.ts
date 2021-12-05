@@ -1,14 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
+import resetCss from './resetCss'
 
 const GlobalStyle = createGlobalStyle`
+  ${resetCss}
   html,
   body {
-    padding: 3rem 1rem;
-    margin: 0;
-    background: papayawhip;
-    min-height: 100%;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 24px;
+    font-family: 'Darker Grotesk', sans-serif;
+    font-size: 12px
   }
 `
 export default GlobalStyle
