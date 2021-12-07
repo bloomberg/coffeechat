@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import GlobalStyle from '../components/GlobalStyle'
-import Layout from '../components/Layout'
 
 const EmotionNextjsApp: FC<AppProps> = ({ Component, pageProps }) => (
   <SWRConfig
@@ -12,9 +11,7 @@ const EmotionNextjsApp: FC<AppProps> = ({ Component, pageProps }) => (
     }}
   >
     <GlobalStyle />
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Component {...pageProps} />
   </SWRConfig>
 )
 
