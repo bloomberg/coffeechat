@@ -30,7 +30,7 @@ scheduling appointments as easy as possible.
 1. `cp sample.env .env`.
 1. `cd` to `local-env`, and start the local services `docker compose up -d`
 1. `cd ..` to the root of this project
-1. Run the migrations `npx prisma migrate dev`
+1. Run the migrations `npx prisma migrate reset`
 1. Start the development server with `npm run dev`
 1. Navigate to `localhost:4444` in your browser to view the React app.
 

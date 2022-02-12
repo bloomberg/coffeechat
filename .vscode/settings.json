@@ -20,5 +20,6 @@
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "stylelint.validate": ["typescript", "typescriptreact"]
 }

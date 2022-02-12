@@ -14,7 +14,9 @@ export default async function startApolloServer(): Promise<ApolloServer> {
   const server = new ApolloServer({
     context: ({ req }) => {
       const { authorization } = req.headers
-      if (!authorization) return {}
+      if (!authorization) {
+        return {}
+      }
 
       const token = validate(authorization)
 

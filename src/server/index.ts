@@ -1,7 +1,7 @@
 import './handleProcessErrors'
 import next from 'next'
 import passport from 'passport'
-import express from 'express'
+import express, { RequestHandler } from 'express'
 import cookieSession from 'cookie-session'
 import log from './log'
 import {
@@ -48,14 +48,14 @@ async function start(): Promise<void> {
   server.get('/jwt', jwtHandler)
   server.get(
     OPENID_CALLBACK_PATH,
-    passport.authenticate('oidc', { failureRedirect: '/' }),
+    passport.authenticate('oidc', { failureRedirect: '/' }) as RequestHandler,
     (request, response) => {
       const { url, query } = request
       debug('callback path %O', { url, query })
       response.redirect('/home')
     }
   )
-  server.get('/login/oidc', passport.authenticate('oidc'))
+  server.get('/login/oidc', passport.authenticate('oidc') as RequestHandler)
   server.get('/logout', (request, response) => {
     request.logOut()
     response.redirect('/')

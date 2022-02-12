@@ -17,7 +17,11 @@ module.exports = {
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (property) =>
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         property.parent ? !/node_modules/.test(property.parent.fileName) : true,
     },
+  },
+  core: {
+    builder: 'webpack5',
   },
 }
