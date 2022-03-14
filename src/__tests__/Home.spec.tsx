@@ -2,6 +2,7 @@ import { render } from '@testing-library/react'
 import useSWR from 'swr'
 import Router from 'next/router'
 import HomeType from '../pages/home'
+import { UserContextProvider } from '../context/UserContext'
 
 jest.mock('next/router', () => ({ push: jest.fn() }))
 jest.mock('swr')
@@ -15,12 +16,17 @@ describe('Home Page', () => {
     jest.clearAllMocks()
   })
   describe('receives all the data', () => {
-    const response = { jwt: 'abcd', user: { given_name: 'pqrs' } }
+    const response = { jwt: 'abcd', user: { given_name: 'Brad' } }
+
     beforeEach(async () => {
       ;(useSWR as jest.Mock).mockReturnValue({
         data: response,
       })
-      ;({ container } = render(<Home />))
+      ;({ container } = render(
+        <UserContextProvider>
+          <Home />
+        </UserContextProvider>
+      ))
     })
 
     it('attaches username', () => {

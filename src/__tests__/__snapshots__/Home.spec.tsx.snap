@@ -2,17 +2,21 @@
 
 exports[`Home Page data still loading returns loading state 1`] = `
 <div>
-  <h1>
+  <h2>
     Loading
-  </h1>
+  </h2>
 </div>
 `;
 
 exports[`Home Page receives all the data attaches username 1`] = `
 <div>
-  <h1>
-    Welcome to the homepage, 
-    pqrs
-  </h1>
+  <div
+    class="p-10"
+  >
+    <h2>
+      Welcome to the homepage, 
+      Brad
+    </h2>
+  </div>
 </div>
 `;

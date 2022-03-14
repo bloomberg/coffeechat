@@ -1,6 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Examples/Button Basic Hello 1`] = `
+exports[`Storyshots Button Primary 1`] = `
+<div
+  style={
+    Object {
+      "margin": "3em",
+    }
+  }
+>
+  <button
+    className="bg-slate-900 hover:bg-slate-500 text-white font-semibold hover:text-white py-2 px-4 border"
+    type="button"
+  >
+    I am a Button
+  </button>
+</div>
+`;
+
+exports[`Storyshots PageTitle Default 1`] = `
 <div
   style={
     Object {
@@ -9,9 +26,9 @@ exports[`Storyshots Examples/Button Basic Hello 1`] = `
   }
 >
   <h1
-    className="Hello__H1-sc-1m8qelh-0 iEUMi"
+    className="font-display font-extrabold text-4xl"
   >
-    Hello
+    I am a Page Title
   </h1>
 </div>
 `;

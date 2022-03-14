@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import { composeStories } from '@storybook/testing-react'
-import * as stories from '../__stories__/Hello.stories'
+import * as stories from '../__stories__/PageTitle.stories'
 
-const { BasicHello } = composeStories(stories)
+const { Default } = composeStories(stories)
 
 describe('Hello', () => {
   test('renders fine', () => {
-    render(<BasicHello />)
-    const helloElement = screen.getByText('Hello')
+    render(<Default />)
+    const pageTitleElement = screen.getByText('I am a Page Title')
     // example assertion to test @testing-library/jest-dom
     // not necessarily the best
-    expect(helloElement).toBeInTheDocument()
+    expect(pageTitleElement).toBeInTheDocument()
   })
 })

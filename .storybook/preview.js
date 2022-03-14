@@ -1,5 +1,6 @@
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import GlobalStyle from '../src/components/GlobalStyle'
+import '../src/styles/globals.css'
+import '../src/styles/fonts'
 
 const { ipad, iphone6, iphonex } = INITIAL_VIEWPORTS
 
@@ -30,7 +31,6 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <>
-      <GlobalStyle />
       <div style={{ margin: '3em' }}>
         <Story />
       </div>
