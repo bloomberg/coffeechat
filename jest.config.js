@@ -5,4 +5,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/.jest/jestDomSetup.ts'],
   testEnvironment: 'jsdom',
   globalSetup: '<rootDir>/.jest/globalSetup.ts',
+  transform: {
+    '\\.(js|jsx|tsx|ts)$': ['babel-jest', { configFile: './jest.babelrc' }],
+  },
 }

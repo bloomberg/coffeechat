@@ -12,6 +12,7 @@ extends:
   - plugin:jest/recommended
   - plugin:jest/style
   - prettier
+  - plugin:storybook/recommended
 plugins:
   - react-hooks
   - unicorn
@@ -108,6 +109,7 @@ rules:
   unicorn/no-array-for-each: 0
   unicorn/no-array-reduce: 0
   unicorn/no-array-callback-reference: 0
+  no-console: 2
   no-unreachable: 2
   no-void: 0
   '@typescript-eslint/naming-convention': 0

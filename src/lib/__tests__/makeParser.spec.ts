@@ -44,7 +44,7 @@ describe('makeParser', () => {
     // We neeed to use a try/expect approach for these (as opposed to
     // expect.toThrow()) because we need to check a property on the errors, and
     // expect.toThrow() only checks the message.
-    /* eslint-disable jest/no-conditional-expect, jest/no-try-expect */
+    /* eslint-disable jest/no-conditional-expect */
 
     it('should return a parser which throws an error when a supplied property is not of the correct type', () => {
       const parse = makeParser<{ bool: boolean }>({
@@ -101,7 +101,5 @@ describe('makeParser', () => {
         ])
       }
     })
-
-    /* eslint-enable jest/no-conditional-expect, jest/no-try-expect */
   })
 })

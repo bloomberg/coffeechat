@@ -1,3 +1,4 @@
+customSyntax: '@stylelint/postcss-css-in-js'
 extends:
   - stylelint-prettier/recommended
   - stylelint-config-recommended
