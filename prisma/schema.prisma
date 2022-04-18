@@ -22,6 +22,7 @@ model user {
   family_name             String
   emails                  email[]
   system_role_assignments system_role_assignment[]
+  system_actions          system_actions[]
 }
 
 model email {
@@ -36,11 +37,27 @@ model system_role {
   assignments system_role_assignment[]
 }
 
+enum system_action_type {
+  ASSIGN_SYSTEM_ROLE
+}
+
 model system_role_assignment {
+  id             String      @id @default(uuid())
   user_id        String
   system_role_id String
   user           user        @relation(fields: [user_id], references: [id])
   role           system_role @relation(fields: [system_role_id], references: [id])
+  created_at     DateTime    @default(now())
 
-  @@id([user_id, system_role_id])
+  @@unique([user_id, system_role_id])
+}
+
+model system_actions {
+  id         String             @id @default(uuid())
+  timestamp  DateTime           @default(now())
+  user_id    String
+  user       user               @relation(fields: [user_id], references: [id])
+  desc       String
+  type       system_action_type
+  related_id String
 }

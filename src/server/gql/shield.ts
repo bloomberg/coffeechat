@@ -3,7 +3,7 @@ import { IRuleFunction } from 'graphql-shield/dist/types'
 import { UserInfo } from '../../types/expressSession'
 import { makeDebug } from '../../lib/makeDebug'
 
-const debug = makeDebug('coffeechat:gql:shield:permissions')
+const debug = makeDebug('gql:shield:permissions')
 
 interface TContext {
   token?: {
