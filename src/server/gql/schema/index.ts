@@ -20,12 +20,18 @@ const typeDefs = gql`
     Current user claims first admin. This will only work the first time
     it is claimed.
     """
-    claimSystemAdmin: User
+    claimSystemAdmin: RoleAssignment
   }
 `
 
 const schema = makeExecutableSchema({
-  typeDefs: [...GqlScalars.typeDefs, typeDefs, User.typeDefs, Email.typeDefs],
+  typeDefs: [
+    ...GqlScalars.typeDefs,
+    typeDefs,
+    User.typeDefs,
+    Email.typeDefs,
+    SystemAdmin.typeDefs,
+  ],
   resolvers: [
     merge(
       GqlScalars.resolvers,

@@ -5,6 +5,7 @@ import prisma from '../prisma'
 import { isAuthenticated } from '../shield'
 
 import { system_action_type } from '@prisma/client'
+import { gql } from 'apollo-server-express'
 
 const debug = makeDebug('coffee:gql:SystemAdmin')
 
@@ -14,6 +15,15 @@ interface TContext {
     user?: UserInfo
   }
 }
+
+export const typeDefs = gql`
+  type RoleAssignment {
+    system_role_id: String!
+    user_id: String!
+    id: String!
+    created_at: DateTime!
+  }
+`
 
 export const resolvers: IResolvers = {
   Mutation: {
