@@ -16,6 +16,7 @@ interface TContext {
   }
 }
 
+// TODO: Move to own typedef
 export const typeDefs = gql`
   type RoleAssignment {
     system_role_id: String!
