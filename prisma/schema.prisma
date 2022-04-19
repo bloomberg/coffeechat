@@ -36,7 +36,7 @@ enum system_role {
 }
 
 enum system_action_type {
-  ASSIGN_SYSTEM_ROLE
+  INITIAL_SYSTEM_ADMIN_CLAIM
 }
 
 model system_role_assignment {

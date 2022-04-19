@@ -2,7 +2,7 @@
 CREATE TYPE "system_role" AS ENUM ('ADMINISTRATOR');
 
 -- CreateEnum
-CREATE TYPE "system_action_type" AS ENUM ('ASSIGN_SYSTEM_ROLE');
+CREATE TYPE "system_action_type" AS ENUM ('INITIAL_SYSTEM_ADMIN_CLAIM');
 
 -- CreateTable
 CREATE TABLE "user" (

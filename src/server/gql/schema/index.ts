@@ -20,7 +20,7 @@ const typeDefs = gql`
     Current user claims first admin. This will only work the first time
     it is claimed.
     """
-    claimSystemAdmin: RoleAssignment
+    claimInitialSystemAdmin: RoleAssignment
   }
 `
 

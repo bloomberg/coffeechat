@@ -28,7 +28,7 @@ export const typeDefs = gql`
 
 export const resolvers: IResolvers = {
   Mutation: {
-    claimSystemAdmin: async (parent, parameters, context: TContext) => {
+    claimInitialSystemAdmin: async (parent, parameters, context: TContext) => {
       const email = context.token?.user?.email
 
       const user = await prisma.email.findUnique({
@@ -74,7 +74,7 @@ export const resolvers: IResolvers = {
           data: {
             desc: 'Initial system admin assigned',
             user_id: user.user_id,
-            type: system_action_type.ASSIGN_SYSTEM_ROLE,
+            type: system_action_type.INITIAL_SYSTEM_ADMIN_CLAIM,
             related_id: created.id,
           },
         })
@@ -88,6 +88,6 @@ export const resolvers: IResolvers = {
 
 export const permissions = {
   Mutation: {
-    claimSystemAdmin: isAuthenticated,
+    claimInitialSystemAdmin: isAuthenticated,
   },
 }
