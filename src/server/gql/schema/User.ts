@@ -24,11 +24,8 @@ export const resolvers: IResolvers = {
           where: {
             user,
           },
-          include: {
-            role: true,
-          },
         })
-      return foundSystemRoleAssignments.map(({ role }) => role.name)
+      return foundSystemRoleAssignments.map(({ role }) => role)
     },
     emails: ({ id: user_id }: TUser) =>
       prisma.email.findMany({ where: { user_id } }),

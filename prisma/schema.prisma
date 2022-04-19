@@ -31,10 +31,8 @@ model email {
   user_id String
 }
 
-model system_role {
-  id          String                   @id @default(uuid())
-  name        String                   @unique
-  assignments system_role_assignment[]
+enum system_role {
+  ADMINISTRATOR
 }
 
 enum system_action_type {
@@ -42,14 +40,13 @@ enum system_action_type {
 }
 
 model system_role_assignment {
-  id             String      @id @default(uuid())
-  user_id        String
-  system_role_id String
-  user           user        @relation(fields: [user_id], references: [id])
-  role           system_role @relation(fields: [system_role_id], references: [id])
-  created_at     DateTime    @default(now())
+  id         String      @id @default(uuid())
+  user_id    String
+  user       user        @relation(fields: [user_id], references: [id])
+  role       system_role
+  created_at DateTime    @default(now())
 
-  @@unique([user_id, system_role_id])
+  @@index([role])
 }
 
 model system_actions {

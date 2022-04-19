@@ -4,7 +4,7 @@ import { UserInfo } from '../../../types/expressSession'
 import prisma from '../prisma'
 import { isAuthenticated } from '../shield'
 
-import { system_action_type } from '@prisma/client'
+import { system_action_type, system_role } from '@prisma/client'
 import { gql } from 'apollo-server-express'
 
 const debug = makeDebug('coffee:gql:SystemAdmin')
@@ -19,7 +19,6 @@ interface TContext {
 // TODO: Move to own typedef
 export const typeDefs = gql`
   type RoleAssignment {
-    system_role_id: String!
     user_id: String!
     id: String!
     created_at: DateTime!
@@ -29,39 +28,19 @@ export const typeDefs = gql`
 export const resolvers: IResolvers = {
   Mutation: {
     claimSystemAdmin: async (parent, parameters, context: TContext) => {
-      const adminRole = await prisma.system_role.findUnique({
+      const roleAssignment = await prisma.system_role_assignment.findFirst({
         where: {
-          name: 'admin',
-        },
-      })
-
-      if (!adminRole) {
-        throw new Error('admin role not found')
-      }
-
-      const adminAssignments = await prisma.system_role.findUnique({
-        where: {
-          id: adminRole.id,
+          role: system_role.ADMINISTRATOR,
         },
         include: {
-          assignments: {
-            include: {
-              user: true,
-            },
-          },
+          user: true,
         },
       })
 
-      if (
-        adminAssignments &&
-        adminAssignments.assignments &&
-        adminAssignments.assignments.length > 0
-      ) {
-        const [
-          {
-            user: { given_name, family_name },
-          },
-        ] = adminAssignments.assignments
+      if (roleAssignment?.role) {
+        const {
+          user: { given_name, family_name },
+        } = roleAssignment
         throw new Error(
           `${given_name} ${family_name} has already claimed admin`
         )
@@ -85,7 +64,7 @@ export const resolvers: IResolvers = {
 
       const created = await prisma.system_role_assignment.create({
         data: {
-          system_role_id: adminRole.id,
+          role: system_role.ADMINISTRATOR,
           user_id: user.user_id,
         },
       })

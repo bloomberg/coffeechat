@@ -68,6 +68,7 @@ async function verify(
         query FindUser($email: String!) {
           email(email: $email) {
             user {
+              id
               family_name
               given_name
               system_roles
