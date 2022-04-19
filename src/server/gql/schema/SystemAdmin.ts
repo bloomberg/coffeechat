@@ -22,6 +22,7 @@ export const typeDefs = gql`
     user_id: String!
     id: String!
     created_at: DateTime!
+    role: String!
   }
 `
 
