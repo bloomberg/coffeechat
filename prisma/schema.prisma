@@ -57,4 +57,6 @@ model system_actions {
   desc       String
   type       system_action_type
   related_id String
+
+  @@index([type])
 }

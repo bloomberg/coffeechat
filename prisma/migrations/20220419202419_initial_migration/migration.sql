@@ -47,6 +47,9 @@ CREATE TABLE "system_actions" (
 -- CreateIndex
 CREATE INDEX "system_role_assignment_role_idx" ON "system_role_assignment"("role");
 
+-- CreateIndex
+CREATE INDEX "system_actions_type_idx" ON "system_actions"("type");
+
 -- AddForeignKey
 ALTER TABLE "email" ADD CONSTRAINT "email_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 

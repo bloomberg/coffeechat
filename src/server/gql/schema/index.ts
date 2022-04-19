@@ -12,6 +12,7 @@ import { GQL_SHIELD_DEBUG } from '../../environment'
 const typeDefs = gql`
   type Query {
     email(email: String!): Email
+    system: System
   }
   type Mutation {
     addUser(email: String!, given_name: String!, family_name: String!): User

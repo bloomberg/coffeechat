@@ -24,9 +24,26 @@ export const typeDefs = gql`
     created_at: DateTime!
     role: String!
   }
+
+  type System {
+    isInitialized: Boolean
+  }
 `
 
 export const resolvers: IResolvers = {
+  Query: {
+    system: () => ({}),
+  },
+  System: {
+    isInitialized: async () => {
+      const count = await prisma.system_actions.count({
+        where: {
+          type: system_action_type.INITIAL_SYSTEM_ADMIN_CLAIM,
+        },
+      })
+      return count > 0
+    },
+  },
   Mutation: {
     claimInitialSystemAdmin: async (parent, parameters, context: TContext) => {
       const email = context.token?.user?.email
@@ -89,5 +106,8 @@ export const resolvers: IResolvers = {
 export const permissions = {
   Mutation: {
     claimInitialSystemAdmin: isAuthenticated,
+  },
+  System: {
+    isInitialized: isAuthenticated,
   },
 }
