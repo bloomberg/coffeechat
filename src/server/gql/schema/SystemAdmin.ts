@@ -28,24 +28,6 @@ export const typeDefs = gql`
 export const resolvers: IResolvers = {
   Mutation: {
     claimSystemAdmin: async (parent, parameters, context: TContext) => {
-      const roleAssignment = await prisma.system_role_assignment.findFirst({
-        where: {
-          role: system_role.ADMINISTRATOR,
-        },
-        include: {
-          user: true,
-        },
-      })
-
-      if (roleAssignment?.role) {
-        const {
-          user: { given_name, family_name },
-        } = roleAssignment
-        throw new Error(
-          `${given_name} ${family_name} has already claimed admin`
-        )
-      }
-
       const email = context.token?.user?.email
 
       const user = await prisma.email.findUnique({
@@ -62,22 +44,43 @@ export const resolvers: IResolvers = {
         throw new Error(`Invalid user with email: ${email}`)
       }
 
-      const created = await prisma.system_role_assignment.create({
-        data: {
-          role: system_role.ADMINISTRATOR,
-          user_id: user.user_id,
-        },
+      return prisma.$transaction(async (txPrisma) => {
+        const roleAssignment = await txPrisma.system_role_assignment.findFirst({
+          where: {
+            role: system_role.ADMINISTRATOR,
+          },
+          include: {
+            user: true,
+          },
+        })
+
+        if (roleAssignment?.role) {
+          const {
+            user: { given_name, family_name },
+          } = roleAssignment
+          throw new Error(
+            `${given_name} ${family_name} has already claimed admin`
+          )
+        }
+
+        const created = await txPrisma.system_role_assignment.create({
+          data: {
+            role: system_role.ADMINISTRATOR,
+            user_id: user.user_id,
+          },
+        })
+        await txPrisma.system_actions.create({
+          data: {
+            desc: 'Initial system admin assigned',
+            user_id: user.user_id,
+            type: system_action_type.ASSIGN_SYSTEM_ROLE,
+            related_id: created.id,
+          },
+        })
+
+        debug('created %O', { created })
+        return created
       })
-      await prisma.system_actions.create({
-        data: {
-          desc: 'Initial system admin assigned',
-          user_id: user.user_id,
-          type: system_action_type.ASSIGN_SYSTEM_ROLE,
-          related_id: created.id,
-        },
-      })
-      debug('created %O', { created })
-      return created
     },
   },
 }
