@@ -13,8 +13,8 @@ import log from '../../../log'
 import {
   AddUserMutation,
   AddUserMutationVariables,
-  FindUserQuery,
-  FindUserQueryVariables,
+  JwtSessionQuery,
+  JwtSessionQueryVariables,
 } from '../../../../generated/graphql'
 import { sign } from '../../../jwt'
 import { makeDebug } from '../../../../lib/makeDebug'
@@ -59,13 +59,13 @@ async function verify(
     const Authorization = `Bearer ${sign({ email })}`
     debug('Generated temporary authentication %O', { Authorization })
 
-    const { email: foundEmail } = await request<
-      FindUserQuery,
-      FindUserQueryVariables
+    const { email: foundEmail, system } = await request<
+      JwtSessionQuery,
+      JwtSessionQueryVariables
     >(
       GQL_BACKEND_URL,
       gql`
-        query FindUser($email: String!) {
+        query JWTSession($email: String!) {
           email(email: $email) {
             user {
               id
@@ -73,6 +73,9 @@ async function verify(
               given_name
               system_roles
             }
+          }
+          system {
+            isInitialized
           }
         }
       `,
@@ -86,6 +89,9 @@ async function verify(
       return {
         ...foundEmail.user,
         email,
+        system: {
+          isInitialized: system?.isInitialized || false,
+        },
       }
     }
 
@@ -128,6 +134,9 @@ async function verify(
     return {
       ...newUser,
       email,
+      system: {
+        isInitialized: system?.isInitialized || false,
+      },
     }
   } catch (error) {
     if (error instanceof Error) {

@@ -1,14 +1,13 @@
 import { NextPage } from 'next'
-import React from 'react'
-import useJWTSession from '../hooks/useJWTSession'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 
-const Home: NextPage = () => {
-  const { isLoading, session } = useJWTSession()
+const Home: NextPage & { isProtected: boolean } = () => {
+  const { session } = useContext(UserContext)
 
   return (
     <>
-      {isLoading && <h2>Loading</h2>}
-      {!isLoading && session?.user?.given_name && (
+      {session?.user?.given_name && (
         <div className="p-10">
           <h2>Welcome to the homepage, {session.user.given_name}</h2>
         </div>
@@ -16,4 +15,6 @@ const Home: NextPage = () => {
     </>
   )
 }
+
+Home.isProtected = true
 export default Home

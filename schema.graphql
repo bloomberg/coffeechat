@@ -14,6 +14,11 @@ A field whose value is a Currency: https://en.wikipedia.org/wiki/ISO_4217.
 scalar Currency
 
 """
+A field whose value conforms to the standard DID format as specified in did-core: https://www.w3.org/TR/did-core/.
+"""
+scalar DID
+
+"""
 A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar Date
@@ -170,6 +175,12 @@ scalar MAC
 
 type Mutation {
   addUser(email: String!, given_name: String!, family_name: String!): User
+
+  """
+  Current user claims first admin. This will only work the first time
+  it is claimed.
+  """
+  claimInitialSystemAdmin: RoleAssignment
 }
 
 """
@@ -239,6 +250,7 @@ scalar PostalCode
 
 type Query {
   email(email: String!): Email
+  system: System
 }
 
 """
@@ -251,10 +263,21 @@ A field whose value is a CSS RGBA color: https://developer.mozilla.org/en-US/doc
 """
 scalar RGBA
 
+type RoleAssignment {
+  user_id: String!
+  id: String!
+  created_at: DateTime!
+  role: String!
+}
+
 """
 The `SafeInt` scalar type represents non-fractional signed whole numeric values that are considered safe as defined by the ECMAScript specification.
 """
 scalar SafeInt
+
+type System {
+  isInitialized: Boolean
+}
 
 """
 A time string at UTC, such as 10:15:30Z, compliant with the `full-time` format outlined in section 5.6 of the RFC 3339profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.

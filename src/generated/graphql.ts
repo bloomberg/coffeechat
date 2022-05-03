@@ -15,6 +15,8 @@ export type Scalars = {
   Byte: any;
   /** A field whose value is a Currency: https://en.wikipedia.org/wiki/ISO_4217. */
   Currency: any;
+  /** A field whose value conforms to the standard DID format as specified in did-core: https://www.w3.org/TR/did-core/. */
+  DID: any;
   /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: any;
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
@@ -155,6 +157,7 @@ export type Scalars = {
 
 
 
+
 export type Email = {
   __typename?: 'Email';
   email: Scalars['String'];
@@ -185,6 +188,11 @@ export type Email = {
 export type Mutation = {
   __typename?: 'Mutation';
   addUser?: Maybe<User>;
+  /**
+   * Current user claims first admin. This will only work the first time
+   * it is claimed.
+   */
+  claimInitialSystemAdmin?: Maybe<RoleAssignment>;
 };
 
 
@@ -210,6 +218,7 @@ export type MutationAddUserArgs = {
 export type Query = {
   __typename?: 'Query';
   email?: Maybe<Email>;
+  system?: Maybe<System>;
 };
 
 
@@ -219,6 +228,19 @@ export type QueryEmailArgs = {
 
 
 
+export type RoleAssignment = {
+  __typename?: 'RoleAssignment';
+  user_id: Scalars['String'];
+  id: Scalars['String'];
+  created_at: Scalars['DateTime'];
+  role: Scalars['String'];
+};
+
+
+export type System = {
+  __typename?: 'System';
+  isInitialized?: Maybe<Scalars['Boolean']>;
+};
 
 
 
@@ -239,12 +261,12 @@ export type User = {
 
 
 
-export type FindUserQueryVariables = Exact<{
+export type JwtSessionQueryVariables = Exact<{
   email: Scalars['String'];
 }>;
 
 
-export type FindUserQuery = (
+export type JwtSessionQuery = (
   { __typename?: 'Query' }
   & { email?: Maybe<(
     { __typename?: 'Email' }
@@ -252,6 +274,9 @@ export type FindUserQuery = (
       { __typename?: 'User' }
       & Pick<User, 'id' | 'family_name' | 'given_name' | 'system_roles'>
     ) }
+  )>, system?: Maybe<(
+    { __typename?: 'System' }
+    & Pick<System, 'isInitialized'>
   )> }
 );
 

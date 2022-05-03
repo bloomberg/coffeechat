@@ -145,8 +145,5 @@
   },
   "engines": {
     "npm": ">= 8.0.0"
-  },
-  "prisma": {
-    "seed": "ts-node --project ./tsconfig.server.json prisma/seed.ts"
   }
 }

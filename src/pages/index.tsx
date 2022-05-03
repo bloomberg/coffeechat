@@ -2,17 +2,13 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import PageTitle from '../components/PageTitle'
 import Button from '../components/Button'
-import useJWTSession from '../hooks/useJWTSession'
 import Router from 'next/router'
+import { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 
 const HomePage: NextPage = () => {
-  const { isLoading, session, error } = useJWTSession()
-  if (isLoading) {
-    return <h2>Loading</h2>
-  }
-  if (error) {
-    return <h2>Error {error}</h2>
-  }
+  const { session } = useContext(UserContext)
+
   if (session) {
     void Router.push('/home')
     return <h2>Loading</h2>

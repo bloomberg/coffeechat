@@ -1,22 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home Page data still loading returns loading state 1`] = `
-<div>
-  <h2>
-    Loading
-  </h2>
-</div>
-`;
+exports[`Home Page data still loading returns loading state 1`] = `<div />`;
 
-exports[`Home Page receives all the data attaches username 1`] = `
-<div>
-  <div
-    class="p-10"
-  >
-    <h2>
-      Welcome to the homepage, 
-      Brad
-    </h2>
-  </div>
-</div>
-`;
+exports[`Home Page receives all the data attaches username 1`] = `<div />`;
