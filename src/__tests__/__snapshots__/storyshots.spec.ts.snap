@@ -10,7 +10,6 @@ exports[`Storyshots Button Primary 1`] = `
 >
   <button
     className="bg-slate-900 hover:bg-slate-500 text-white font-semibold hover:text-white py-2 px-4 border"
-    type="button"
   >
     I am a Button
   </button>

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev --no-deps --respawn --no-notify --ignore-watch '.next' --project tsconfig.server.json src/server/index.ts",
+    "dev": "ts-node-dev --trace-warnings --no-deps --respawn --no-notify --ignore-watch '.next' --project tsconfig.server.json src/server/index.ts",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --quiet --fix",
     "eslint:deadcode": "eslint . -c .eslintrc.deadcode.yml",
@@ -68,15 +68,11 @@
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
-    "@types/cookie-session": "^2.0.43",
     "@types/debug": "^4.1.7",
     "@types/express": "^4.17.11",
     "@types/express-pino-logger": "^4.0.3",
     "@types/jest": "^27.4.1",
-    "@types/jsonwebtoken": "^8.5.5",
     "@types/lodash.merge": "^4.6.6",
-    "@types/openid-client": "^3.7.0",
-    "@types/passport": "^1.0.7",
     "@types/pino": "^7.0.5",
     "@types/react": "^17.0.4",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
@@ -118,11 +114,11 @@
   },
   "dependencies": {
     "@fontsource/darker-grotesque": "^4.5.2",
+    "@next-auth/prisma-adapter": "^1.0.3",
     "@prisma/client": "^3.13.0",
     "ajv": "^8.2.0",
     "apollo-server-core": "^3.0.1",
-    "apollo-server-express": "^3.0.1",
-    "cookie-session": "^1.4.0",
+    "apollo-server-micro": "^3.7.0",
     "cross-env": "^7.0.3",
     "debug": "^4.3.2",
     "dotenv": "^16.0.0",
@@ -134,11 +130,9 @@
     "graphql-scalars": "^1.10.0",
     "graphql-shield": "^7.5.0",
     "graphql-tools": "^4.0.8",
-    "jsonwebtoken": "^8.5.1",
     "lodash.merge": "^4.6.2",
     "next": "^12.1.0",
-    "openid-client": "^4.7.4",
-    "passport": "^0.4.1",
+    "next-auth": "^4.3.4",
     "pino": "^7.8.0",
     "pino-pretty": "^7.5.3",
     "react": "^17.0.2",
@@ -146,8 +140,5 @@
   },
   "engines": {
     "npm": ">= 8.0.0"
-  },
-  "prisma": {
-    "seed": "ts-node --project ./tsconfig.server.json prisma/seed.ts"
   }
 }
