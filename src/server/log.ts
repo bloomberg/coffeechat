@@ -3,7 +3,12 @@ import { LOG_LEVEL as level, LOG_PRETTY as prettyPrint } from './environment'
 
 const log = pino({
   level,
-  prettyPrint,
+
+  ...(prettyPrint && {
+    transport: {
+      target: 'pino-pretty',
+    },
+  }),
   ...(prettyPrint && {
     timestamp: pino.stdTimeFunctions.isoTime,
   }),
