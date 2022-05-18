@@ -1,0 +1,12 @@
+extends: '.eslintrc.yml'
+rules:
+  import/no-unused-modules:
+    - 2
+    - missingExports: false
+      unusedExports: true
+      ignoreExports:
+        - '**/*.d.ts'
+        - 'src/pages/**/*'
+        - '**/*.stories.tsx'
+        - '.storybook/**/*'
+        - '**/__mocks__/**/*'

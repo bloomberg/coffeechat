@@ -39,7 +39,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-}
       - run: npm ci
-      - run: npm run eslint
+      - run: npm run eslint:deadcode
   prettier:
     runs-on: ubuntu-latest
     steps:
