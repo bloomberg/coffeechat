@@ -1,71 +1,18 @@
 import './handleProcessErrors'
 import next from 'next'
-import passport from 'passport'
-import express, { RequestHandler } from 'express'
-import cookieSession from 'cookie-session'
+import express from 'express'
 import log from './log'
-import {
-  PORT as port,
-  NODE_ENV,
-  OPENID_CALLBACK_BASE_URL,
-  SESSION_SECRET,
-  SESSION_SECURE,
-  SESSION_MAX_AGE_MILLIS,
-} from './environment'
+import { PORT as port, NODE_ENV } from './environment'
 import accessLog from './express/middlewares/accessLog'
-import initPassport from './express/middlewares/passport'
-import { makeOpenIdStrategy } from './express/middlewares/passport/openId'
-import { jwtHandler } from './express/handlers/jwt'
-import startApolloServer from './gql/apolloServer'
-import { makeDebug } from '../lib/makeDebug'
-
-const OPENID_CALLBACK_PATH = '/auth/example/callback'
-const debug = makeDebug('server')
-
-const REGISTERED_OPENID_REDIRECT = `${OPENID_CALLBACK_BASE_URL}${OPENID_CALLBACK_PATH}`
-
-log.info(
-  { REGISTERED_OPENID_REDIRECT },
-  'make sure this url is registered with your Open Id connect authority. e.g.: google'
-)
 
 async function start(): Promise<void> {
   log.info({ NODE_ENV }, 'application starting')
 
   const server = express()
-  server.use(
-    cookieSession({
-      secret: SESSION_SECRET,
-      maxAge: SESSION_MAX_AGE_MILLIS,
-      secureProxy: SESSION_SECURE,
-      httpOnly: true,
-    })
-  )
   server.use(accessLog)
-
-  initPassport(server, await makeOpenIdStrategy(REGISTERED_OPENID_REDIRECT))
-
-  server.get('/jwt', jwtHandler)
-  server.get(
-    OPENID_CALLBACK_PATH,
-    passport.authenticate('oidc', { failureRedirect: '/' }) as RequestHandler,
-    (request, response) => {
-      const { url, query } = request
-      debug('callback path %O', { url, query })
-      response.redirect('/home')
-    }
-  )
-  server.get('/login/oidc', passport.authenticate('oidc') as RequestHandler)
-  server.get('/logout', (request, response) => {
-    request.logOut()
-    response.redirect('/')
-  })
 
   server.disable('x-powered-by')
   server.set('trust-proxy', true)
-
-  const apolloServer = await startApolloServer()
-  apolloServer.applyMiddleware({ app: server })
 
   const nextjsApp = next({
     dev: NODE_ENV !== 'production',
